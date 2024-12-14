@@ -1,18 +1,33 @@
-#pip install panda3d
-# from unittest import loader
-#
-from direct.showbase.ShowBase import ShowBase #сцена
-base = ShowBase() #об'єкт від класу
-base.run()
+from direct.showbase.ShowBase import ShowBase
+# Імпортуємо клас ShowBase, який є базовим класом у Panda3D.
+# Він надає основну функціональність для роботи з тривимірними сценами, камерами, рендерингом тощо.
 
-#сцена, висота персонажа,
-class Game(ShowBase):
-    def __init__(self):
-        self.model = loader.loadModel('models/enviroment')
-        self.model.reparentTo(render)
-        self.model.setScale(0.1)self.model
-        self.model.setPos(-2, 25, -3)
-        base.camlens.setFov(90) #189 max
+from mapmanager import Mapmanager
+# Імпортуємо клас Mapmanager із зовнішнього модуля (файлу mapmanager.py),
+# який відповідає за створення та керування картою гри.
+
+class Game(ShowBase):   #Це визначає, наскільки "широкий" вигляд має камера.
+# Оголошуємо клас Game, який успадковує функціональність класу ShowBase.
+# Цей клас буде містити логіку нашої гри.
+
+   def __init__(self):
+       # Ініціалізуємо об'єкт класу Game.
+
+       ShowBase.__init__(self)
+       # Викликаємо конструктор базового класу ShowBase, щоб налаштувати середовище Panda3D
+       # (наприклад, рендеринг, камеру та інші базові функції).
+
+       self.land = Mapmanager()
+       # Створюємо об'єкт класу Mapmanager і зберігаємо його у змінній `self.land`.
+       # Це дозволяє керувати картою через цей об'єкт.
+
+       base.camLens.setFov(90)
+       # Встановлюємо поле огляду (FOV — Field of View) камери на 90 градусів.
+       # Це визначає, наскільки "широкий" вигляд має камера.
 
 game = Game()
+# Створюємо об'єкт класу Game, який запускає всю логіку гри.
+
 game.run()
+# Запускаємо метод run(), успадкований від ShowBase, який запускає основний цикл гри.
+# Він обробляє рендеринг, оновлення сцени та події у реальному часі.
