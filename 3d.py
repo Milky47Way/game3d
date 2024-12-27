@@ -1,6 +1,6 @@
 #pip install panda3d
 # from unittest import loader
-#
+
 from direct.showbase.ShowBase import ShowBase #сцена
 base = ShowBase() #об'єкт від класу
 base.run()
