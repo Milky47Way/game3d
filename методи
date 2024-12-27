@@ -1,3 +1,5 @@
 #pip install panda3d - метод 3д
+#pip install scikit-learn
+#pip install pandas
 
 https://github.com/olha-tryhub-teacher/python/blob/main/pythonPro1/m5/m5y1/2/mapmanager.py#L37
