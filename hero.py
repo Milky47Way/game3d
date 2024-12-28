@@ -16,7 +16,7 @@ class Hero():
     def __init__(self, pos, land):
         self.land = land
         self.mode = True #крізь усе
-        self.hero = loader.loadMode('smiley')
+        self.hero = loader.loadMode('smiley') #hero
         self.hero.setColor(1, 0.5, 0)
         self.hero.setColor(0.3)
         self.hero.setPos(pos)
