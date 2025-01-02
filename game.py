@@ -20,7 +20,9 @@ class Game(ShowBase):   #Це визначає, наскільки "широки
        self.land = Mapmanager()
        # Створюємо об'єкт класу Mapmanager і зберігаємо його у змінній `self.land`.
        # Це дозволяє керувати картою через цей об'єкт.
-
+      
+       self.land.loadLand('land.txt')
+      
        base.camLens.setFov(90)
        # Встановлюємо поле огляду (FOV — Field of View) камери на 90 градусів.
        # Це визначає, наскільки "широкий" вигляд має камера.
