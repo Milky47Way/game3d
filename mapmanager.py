@@ -10,7 +10,7 @@ class Mapmanager():
         # Файл block.egg повинен бути у вашій папці з ресурсами.
 
         self.texture = 'block.png'
-            texture = 'grass.jpg'
+             texture = 'grass.jpg'
         #textureS/pink = ''
         # Задаємо текстуру, яка буде використовуватись для кубика.
         # Текстурний файл block.png повинен бути у вашій папці.
@@ -56,7 +56,8 @@ class Mapmanager():
 
         self.block.setPos(position)
         # Встановлюємо позицію блоку у просторі (x, y, z), передану через аргумент `position`.
-        self.color = self.getColor(int(position[2]))
+        #self.color = self.getColor(int(position[2]))
+        
         # self.block.setColor(self.color)
         # Цей рядок відповідає за зміну кольору блоку поверх текстури,
         # але його виконання зараз вимкнене.
