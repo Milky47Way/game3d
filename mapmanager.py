@@ -10,13 +10,20 @@ class Mapmanager():
         # Файл block.egg повинен бути у вашій папці з ресурсами.
 
         self.texture = 'block.png'
-             texture = 'grass.jpg'
+            # texture = 'grass.jpg'
+
+    #self.textures = {
+            #'block': self.loader.loadTexture('texstures/block.png)',
+            #'grass': self.loader.loadTexture('textures/grass.jpg')  }
+                         
         #textureS/pink = ''
         # Задаємо текстуру, яка буде використовуватись для кубика.
         # Текстурний файл block.png повинен бути у вашій папці.
 
-        self.color = (0.2, 0.2, 0.35, 1)
-                     (0.1, 0.2, 0.3, 1)
+       self.colors = [
+            (0.2, 0.2, 0.35, 1),
+            (0.2, 0.8, 0.35, 1)
+            ]
         # Визначаємо колір RGBA (червоний, зелений, синій, прозорість) для блоку.
         # Це використовується для задання кольору поверх текстури.
 
