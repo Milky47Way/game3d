@@ -1,4 +1,5 @@
 class Mapmanager():
+import pickle
     """ Керування мапою """
     # Оголошуємо клас `Mapmanager`, який відповідає за створення і керування мапою у грі.
 
@@ -113,3 +114,21 @@ class Mapmanager():
         for block in self.findBlocks(pos):
             block.removeNode()
 
+    defsaveMap(self):
+    blocks = self.land.getChildren()
+    wiht open ('my_map.dat', 'wb') as file:
+        pickle.dump(len(blocks), file)
+
+
+        for block in blocks:
+            x, y, z = block.getPos()
+            pos = int(x), int(y), int(z))
+            pickle.dump(pos, file)
+
+    def loadMap(self):
+        self.clear()
+with open ('my_map.dat', 'rb') as file:
+    length = pickle.load(file)
+    for i in range(length):
+        pos = pickle.load(file)
+        self.addBlock(pos)
