@@ -161,3 +161,11 @@ class Hero():
         base.accept(key_up, self.move_up)
                     
         base.accept(key_switch_camera, self.changeView)
+
+        base.accept(key_switch_mode, self.switch_mode)
+        base.accept(key_build, self.build)
+        base.accept(key_destroy, self.destroy)
+
+
+        base.accept('k', self.land.saveMap)
+        base.accept('l', self.land.loadMap)
