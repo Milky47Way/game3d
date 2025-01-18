@@ -23,9 +23,6 @@ class Hero():
         self.mode = True  # крізь усе
         self.hero = loader.loadModel('panda')  # hero.egg + texture
 
-        model.reparentTo(self.render)
-        base_texture = loader.loadTexture('models/backgrounds/
-
         model.setTexture(base_texture)
         #self.hero.setScale(1.0)
         self.hero.setColor(1, 0.5, 0)
@@ -35,6 +32,27 @@ class Hero():
         self.cameraBind()
         self.accept_events()
 
+
+        model = self.loader.loadTexture('models/backgrounds/sky_sphere')
+        model.reparentTo(self.render)
+        base_texture = loader.loadTexture('models/backgrounds/stars_1k_tex.jpg')
+        model.setTexture(base_texture)
+        #model.setColor((1,0,0,1))
+        model.setPos(0,0,0)
+        model.setScale(50, 50, 50)
+        model.setHpr(90, 0, 0)
+        base.camLens.setFov(90)
+
+        model1 = self.loader.loadTexture('models/grass/img.png')
+        model1.reparentTo(self.render)
+        base_texture = loader.loadTexture('models/grass/shrubbery.egg.pz)
+        model1.setTexture(base_texture)
+        # model.setColor((1,0,0,1))
+        model1.setPos(0, 0, 0)
+        model1.setScale(3, 3, 3)
+        model1.setHpr(90, 0, 0)
+
+        base.camLens.setFov(90)
     def cameraBind(self):
         base.disableMouse()
         base.camera.setH(180)
