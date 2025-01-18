@@ -22,6 +22,11 @@ class Hero():
         self.land = land
         self.mode = True  # крізь усе
         self.hero = loader.loadModel('panda')  # hero.egg + texture
+
+        model.reparentTo(self.render)
+        base_texture = loader.loadTexture('models/backgrounds/
+
+        model.setTexture(base_texture)
         #self.hero.setScale(1.0)
         self.hero.setColor(1, 0.5, 0)
         self.hero.setColor(0.3)
