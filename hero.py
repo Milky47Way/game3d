@@ -31,16 +31,6 @@ class Hero():
         self.hero.reparentTo(render)
         self.cameraBind()
         self.accept_events()
-
-
-        model = self.loader.loadTexture('models/backgrounds/sky_sphere')
-        model.reparentTo(self.render)
-        base_texture = loader.loadTexture('models/backgrounds/stars_1k_tex.jpg')
-        model.setTexture(base_texture)
-        #model.setColor((1,0,0,1))
-        model.setPos(0,0,0)
-        model.setScale(50, 50, 50)
-        model.setHpr(90, 0, 0)
         base.camLens.setFov(90)
 
         model1 = self.loader.loadTexture('models/grass/img.png')
