@@ -1,12 +1,12 @@
-key_switch_camera = 'f'  # від якого обличчя
-key_switch_mode = 'z'  # проходить через перешкоди чи ні
-key_forward = 'arrow_up' # вперед
-key_back = 'arrow_down'  # назад
-key_left = 'arrow_left'  # вліво
-key_right = 'arrow_right'  # вправо
+key_switch_camera = 'f'  #від якого обличчя
+key_switch_mode = 'z'  #проходить через перешкоди чи ні
+key_forward = 'arrow_up' #вперед
+key_back = 'arrow_down'  #назад
+key_left = 'arrow_left'  #вліво
+key_right = 'arrow_right'  #вправо
 
-key_up = 'u'  # вгору
-key_down = 'd'  # вниз
+key_up = 'u'  #вгору
+key_down = 'd'  #вниз
 
 key_turn_left = 'q'
 key_turn_right = 'r'
@@ -20,29 +20,17 @@ step = 1
 class Hero():
     def __init__(self, pos, land):
         self.land = land
-        self.mode = True  # крізь усе
-        self.hero = loader.loadModel('panda')  # hero.egg + texture
-
-        model.setTexture(base_texture)
-        #self.hero.setScale(1.0)
-        self.hero.setColor(1, 0.5, 0)
-        self.hero.setColor(0.3)
+        self.mode = True  #крізь все
+        self.hero = loader.loadModel('models/Penguin')
+        self.hero.reparentTo(base.render)
         self.hero.setPos(pos)
-        self.hero.reparentTo(render)
+        self.hero.setPos(20,30,6)
+        base_texture = base.loader.loadTexture('models/pingu2_Material_#5_CL.tif')
+        self.hero.setTexture(base_texture)
+        self.hero.setScale(0.9)
         self.cameraBind()
         self.accept_events()
-        base.camLens.setFov(90)
 
-        model1 = self.loader.loadTexture('models/grass/img.png')
-        model1.reparentTo(self.render)
-        base_texture = loader.loadTexture('models/grass/shrubbery.egg.pz)
-        model1.setTexture(base_texture)
-        # model.setColor((1,0,0,1))
-        model1.setPos(0, 0, 0)
-        model1.setScale(3, 3, 3)
-        model1.setHpr(90, 0, 0)
-
-        base.camLens.setFov(90)
     def cameraBind(self):
         base.disableMouse()
         base.camera.setH(180)
@@ -67,10 +55,9 @@ class Hero():
         self.hero.setH((self.hero.getH() + 5) % 360)
 
     def turn_right(self):
-        """Поворот героя вправо (зміна кута погляду проти годинникової стрілки)."""
         self.hero.setH((self.hero.getH() - 5) % 360)
 
-    def look_at(self, angle):  # розраховує в який напрямок треба рухатись, координати
+    def look_at(self, angle):  #розраховує в який напрямок треба рухатись, координати
         x_from = self.hero.getX()
         y_from = self.hero.getY()
         z_from = self.hero.getZ()
@@ -81,14 +68,18 @@ class Hero():
 
     def just_move(self, angle):
         x, y, z = self.look_at(angle)
-        if not self.land.isBlockAt((round(x), round(y), round(z))):
+        if self.mode:
             self.hero.setPos((x, y, z))
             print(f"Герой переміщений на {(x, y, z)}")
         else:
-            print(f"Неможливо рухатись, є блок на {(x, y, z)}")
+            if not self.land.isBlockAt((round(x), round(y), round(z))):
+                self.hero.setPos((x, y, z))
+                print(f"Герой переміщений на {(x, y, z)}")
+            else:
+                print(f"Неможливо рухатись, є блок на {(x, y, z)}")
+
 
     def look_at(self, angle):
-
         x_from = self.hero.getX()
         y_from = self.hero.getY()
         z_from = self.hero.getZ()
@@ -107,6 +98,8 @@ class Hero():
 
     def move_to(self, angle):
         if self.mode:
+            self.just_move(angle)
+        else:
             self.just_move(angle)
 
     def check_dir(self, angle):
@@ -160,10 +153,20 @@ class Hero():
     def switch_mode(self):
         if self.mode:
             self.mode = False
-            print("Тепер неможна проходити крізь перешкоди")
+            print("Тепер не можна проходити крізь перешкоди")
         else:
             self.mode = True
             print("Тепер можна проходити крізь перешкоди")
+
+    def try_move(self, angle):
+        pos = self.look_at(angle)
+        if not self.land.isBlockAt(pos):
+            pos = self.land.findHighesEmpty(pos)
+            self.hero.setPos(pos)
+        else:
+            pos = pos[0], pos[1], pos[2] + 1
+            if not self.land.isBlockAt(pos):
+                self.hero.setPos(pos)
 
     def build(self):
         angle = self.hero.getH() % 360
